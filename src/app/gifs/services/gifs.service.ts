@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SearchResponse } from '../interfaces/gifs.interfaces';
 
 const GIPHY_APIKEY = 'APY_KEY';
 
@@ -35,9 +36,7 @@ export class GifsService {
       .set('api_key', GIPHY_APIKEY)
       .set('q', tag)
       .set('limit', '10');
-    this.http.get(`${ this.serviceUrl }/search`, { params })
+    this.http.get<SearchResponse>(`${ this.serviceUrl }/search`, { params })
       .subscribe( resp => console.log(resp));
   }
-
-
 }
